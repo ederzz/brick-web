@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <title>BrickUI</title>
+  <script>
+    var bui = {
+      ui: 'normal/layout', // 最外侧布局UI
+      // 布局需要填充的块
+      brick: {
+        top: 'top/qq.com', // 布局的头部填充块
+        left: 'left/163.com', // 布局的左侧填充块
+        // 布局主体填充块
+        main: {
+          ui: 'main/sina.com', // 布局主体采用的UI
+          // 主体填充块
+          brick: {
+            head: 'head/antd.io', // 主体头部块
+            list: 'list/baidu.com', // 主体列表块
+            page: 'page/google.com' // 主体列表分页块
+          }
+        },
+        footer: [
+          {
+            ui: 'a1/b1',
+            brick: {
+              head: 'a11/b11'
+            }
+          },
+          {
+            ui: 'a2/b2',
+            brick: {
+              head: 'a21/b21'
+            }
+          }
+        ]
+      }
+    }
+
+
+
+
+  </script>
+</head>
+<body style="height: 100%; margin: 0;overflow: hidden;"><iframe id="iframe" frameborder="0" width="100%" height="100%"></iframe></body>
+</html>

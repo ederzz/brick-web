@@ -1,0 +1,43 @@
+.wall-nav {
+
+}
+
+.wall-nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+.wall-nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px;
+    padding: 0 4px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.wall-nav ul li:first-child {
+    color: #333;
+    background-color: transparent;
+}
+
+.wall-nav ul li.active {
+    background-color: #5cb85c;
+}
+
+.wall-list {
+    margin: 0 -10px;
+    padding: 0;
+}
+
+.wall-list li {
+    float: left;
+    width: 220px;
+    margin: 10px;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    list-style: none;
+}

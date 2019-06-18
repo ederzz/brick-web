@@ -1,0 +1,52 @@
+.top {
+    height: 50px;
+    line-height: 50px;
+    background-color: #39c;
+}
+
+.top .logo {
+    float: left;
+    margin-left: 20px;
+}
+
+.top .search {
+    float: left;
+    width: 250px;
+    height: 22px;
+    margin: 14px;
+}
+
+.top .search input {
+    float: left;
+    width: 200px;
+    height: 22px;
+    padding: 3px;
+    line-height: 16px;
+    border: none;
+    border-radius: 3px 0 0 3px;
+    outline: none;
+}
+
+.top .search .btn {
+    float: left;
+    padding: 3px 8px;
+    border: none;
+    border-radius: 0 3px 3px 0;
+}
+
+.top .nav {
+    float: right;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.top .nav a {
+    display: inline-block;
+    padding: 0 10px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.top a {
+    color: #fff;
+}

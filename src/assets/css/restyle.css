@@ -1,0 +1,39 @@
+html {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font: 14px/1.5 Verdana, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+    color: #333;
+}
+
+*,
+*::before,
+*::after {
+    -moz-box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+.clearfix:before,
+.clearfix:after,
+.wrap:before,
+.wrap:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after,
+.wrap:after {
+    clear: both;
+}
+
+.wrap {
+    width: 1180px;
+    margin-right: auto;
+    margin-left: auto;
+}

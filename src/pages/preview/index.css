@@ -1,0 +1,16 @@
+.err {
+    width: 80%;
+    margin: 0 10%
+}
+
+.err h2 {
+    margin-top: 10%;
+    text-align: center;
+}
+
+.err-fail {
+    text-align: left;
+    background-color: #fee;
+    color: #933;
+    border: 2px solid #933;
+}

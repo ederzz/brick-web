@@ -1,0 +1,95 @@
+.formitem {
+    display: table;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 0;
+}
+
+.formitem:last-child {
+    margin-bottom: 0;
+}
+
+.formitem .title {
+    height: 38px;
+    margin: 0;
+    line-height: 38px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.formitem .lab {
+    float: left;
+    vertical-align: top;
+    width: 50px;
+    padding-right: 10px;
+    line-height: 38px;
+    font-size: 12px;
+    text-align: right;
+}
+
+.formitem .mix {
+    display: table-cell;
+    width: 100%;
+    vertical-align: top;
+}
+
+.formitem .msg {
+    float: right;
+    height: 38px;
+    padding: 0 10px;
+    line-height: 38px;
+    font-size: 12px;
+    color: #999;
+}
+
+.formitem .ipt {
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    border: 1px solid #d9d9d9;
+    border-top-color: #c0c0c0;
+    line-height: 20px;
+    font-size: 14px;
+    color: #777;
+    background: #fff;
+    outline: none;
+}
+
+.formitem.error .ipt {
+    border: 1px solid #d9534f;
+}
+
+.formitem .tip {
+    width: 100%;
+    height: 22px;
+    line-height: 22px;
+    font-size: 12px;
+    color: #999;
+}
+
+.formitem .btn {
+    width: 100%;
+}
+
+.formitem .mix.code {
+    position: relative;
+}
+
+.formitem .mix.code .ipt {
+    width: 66%;
+}
+
+.formitem .mix.code.error .ipt {
+    border: 1px solid #d9534f;
+}
+
+.formitem .mix.code .btn {
+    float: right;
+    width: 30%;
+}
+
+.formitem .mix.code .arrive {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
