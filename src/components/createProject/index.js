@@ -73,7 +73,7 @@ export default class Login extends React.Component {
       name,
       category:category && category.value,
       layout: layout && layout.value,
-      tags,
+      tags:tags.split(/;|；/),
       description
     }
     httpAgent.post('/dev/create', body).then(res => {

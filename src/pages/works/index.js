@@ -58,7 +58,7 @@ export default class Wall extends React.Component {
   getData = (category,layout) => {
     const {httpAgent} = this.props
 
-    let url = `/wall/getList/?page=1`
+    let url = `/wall/getMyList/?page=1`
     category && (url+=`&category=${category}`)
     layout && (url+=`&layout=${layout}`)
 
@@ -72,32 +72,16 @@ export default class Wall extends React.Component {
     })
   }
 
-  getTags = (tags) => {
-    console.log('tags',tags)
-    if(Array.isArray(tags) && tags.length) {
-      const lis = tags.map((v,i)=>{
-        console.log('v',v)
-        return <span key={i}>{v}</span>
-      })
-
-      return lis
-    }else{
-      return null
-    }
-  }
-
   getList = () => {
     const {data} = this.state
     if(Array.isArray(data) && data.length) {
-      const lis = data.map((v,i)=>{
-        return <li key={i}>
+      const lis = data.map(v=>{
+        return <li key={v.name}>
           <a href={`/p?json=${v.code}`} target="_blank">
             <img src={defaultWallListImg}/>
           </a>
           <div>
             <strong>{v.name}</strong>
-            <p className="tags">标签：{this.getTags(v.tags)}</p>
-            <p>作者：{v.user}</p>
           </div>
         </li>
       })

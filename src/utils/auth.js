@@ -4,7 +4,8 @@ export const storeAuth = (tokenInfo) => {
   sessionStorage.token = tokenInfo.token
   sessionStorage.activeTime =  Date.now()
   localStorage.refreshToken = tokenInfo.refreshToken
-}
+  //localStorage.setItem('getSession', Date.now());
+};
 
 // 清除登录相关信息
 export const clearLogin = () => {

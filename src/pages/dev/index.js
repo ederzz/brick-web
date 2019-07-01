@@ -22,9 +22,9 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       codeType: 'html',
-      htmlCode: '<div>1</div>',
-      cssCode: '.main{color: red;}',
-      jsCode: 'var x= 1;',
+      htmlCode: '',
+      cssCode: '',
+      jsCode: '',
     }
 
     this.textareaRef = React.createRef()

@@ -3,8 +3,9 @@ import jsonlint from '../../utils/jsonlint'
 import setClientHeight from '../../utils/setClientHeight'
 import initFs from './initFS'
 import getPath from './getPath'
-import downFile from './downFile'
-import buildFile from './buildFile'
+//import downFile from './downFile'
+//import buildFile from './buildFile'
+import buildPage from './buildPage'
 import {getParams} from '../../utils/url'
 import './index.css'
 
@@ -102,6 +103,8 @@ export default class Preview extends React.Component {
       })
     }
 
+    // console.log('xxx',x,pageJson)
+
     /*
 
     const pageJson = {
@@ -124,10 +127,12 @@ export default class Preview extends React.Component {
 // 根据地址下载文件 并且缓存
     httpAgent.post('/preview/getFiles', {names: paths}).then(res => {
       if (res.code === 0) {
-        downFile(res.data) // 缓存数据
+        //downFile(res.data) // 缓存数据
 
         // 使用缓存的文件 生成网页
-        const page = buildFile(pageJson)
+        //const page = buildFile(pageJson)
+
+        const page = buildPage(pageJson,res.data)
 
         document.querySelector('#iframe').setAttribute('srcdoc', page)
 

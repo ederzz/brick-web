@@ -12,7 +12,12 @@ import Home from './pages/home'
 import DevHome from './pages/devHome'
 import Dev from './pages/dev'
 import Preview from './pages/preview'
+import Brick from './pages/brick'
 import Wall from './pages/wall'
+import Rule from './pages/rule'
+import Works from './pages/works'
+import WorksEditor from './pages/works/editor'
+import Collect from './pages/collect'
 import Top from './components/top'
 import Login from './components/login'
 import Register from './components/register'
@@ -20,6 +25,7 @@ import {tosts} from '@/ui'
 import httpAgent from './utils/httpAgent'
 import ENV from './config/env'
 import { clearLogin } from './utils/auth'
+import setStorage from'./utils/setStorage'
 
 const history = createBrowserHistory()
 
@@ -31,6 +37,7 @@ export default class App extends React.Component {
       userInfo: {},
     }
     this.agent = httpAgent(ENV.APIROOT)
+    setStorage(this.getUserInfo) // 新打开的窗口设置token 并且回掉 获取用户信息(因为是异步的所以did mount 时token不存在)
   }
 
   componentDidMount () {
@@ -103,7 +110,12 @@ export default class App extends React.Component {
           <Route exact path="/dev" render={(props) => this.preRender(props, DevHome, {mastLogin: true})}/>
           <Route path="/dev/:name" render={(props) => this.preRender(props, Dev, {noTop: true, mastLogin: true})}/>
           <Route path="/p" render={(props) => this.preRender(props, Preview, {noTop: true})}/>
+          <Route path="/brick" render={(props) => this.preRender(props, Brick)}/>
           <Route path="/wall" render={(props) => this.preRender(props, Wall)}/>
+          <Route path="/rule" render={(props) => this.preRender(props, Rule)}/>
+          <Route exact path="/works" render={(props) => this.preRender(props, Works, {mastLogin: true})}/>
+          <Route path="/works/:id" render={(props) => this.preRender(props, WorksEditor, {mastLogin: true})}/>
+          <Route path="/collect" render={(props) => this.preRender(props, Collect, {mastLogin: true})}/>
         </Switch>
       </Router>
     )

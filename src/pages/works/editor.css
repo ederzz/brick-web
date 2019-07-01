@@ -1,0 +1,15 @@
+.works-editor .info {
+    position: relative;
+    padding-right: 300px;
+}
+
+.works-editor .detail {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+}
+
+.works-editor .detail .btn {
+    width: 30%;
+}

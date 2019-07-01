@@ -1,6 +1,9 @@
 import React from 'react'
+import {toolTip} from '@/ui'
 import Code from './code'
 import Explain from './explain'
+import ENV from '../../config/env'
+import CreateWorks from '../../components/createWorks'
 
 import './index.css'
 //import './codemirror.css'
@@ -12,10 +15,11 @@ export default class Home extends React.Component {
     this.state = {
       code: '// 输入一个JSON\n' +
       '{\n' +
-      '  ui: \"top-left-layout\",\n' +
+      '  ui: \"crm-layout\",\n' +
       '  brick: {\n' +
       '  }\n' +
-      '}'
+      '}',
+      createWorksVisible: false,
     }
   }
 
@@ -23,8 +27,18 @@ export default class Home extends React.Component {
     this.setState({code})
   }
 
+  createWorksOpen = () => {
+    this.setState({createWorksVisible: true})
+  }
+
+  createWorksClose = () => {
+    this.setState({createWorksVisible: false})
+  }
+
   render() {
-    const { code } = this.state
+    const { code, createWorksVisible } = this.state
+    const {httpAgent} = this.props
+    console.log('home render',this.props)
     return (
       <div className="wrap clearfix">
 
@@ -34,9 +48,18 @@ export default class Home extends React.Component {
         </div>
 
         <div className="home-url">
-          <input id="url" value={`http://www.brickui.com/p?json=${code}`} />
-          <a href={`http://www.brickui.com/p?json=${code}`} target="_blank" className="url-view">查看</a>
-          <button className="url-save">保存到我的作品</button>
+          <input id="url" value={`${ENV.HOME}/p?json=${code}`} />
+          <a
+            href={`${ENV.HOME}/p?json=${code}`}
+            target="_p"
+            className="url-view"
+            onMouseEnter={(e) => {
+              toolTip({e, msg: '您可以保存或分享此地址，以便随时查看', position: 'top'})
+            }}
+            onMouseLeave={() => toolTip({leave: true})}
+          >查看</a>
+          <button className="url-save" onClick={this.createWorksOpen}>保存到我的作品</button>
+          {createWorksVisible ? <CreateWorks httpAgent={httpAgent} modalClose={this.createWorksClose} code={code} /> : null}
         </div>
 
       </div>
