@@ -9,10 +9,6 @@ export default class Top extends React.Component {
     return(<div className="top-layout">
       <div className="wrap">
       <Link className="logo" to="/">BrickUI</Link>
-      <div className="search clearfix">
-        <input />
-        <div className="btn btn-success btn-s">搜索</div>
-      </div>
       <div className="nav">
         <NavLink to="/brick"><span>砖块(模块市场)</span></NavLink>
         <NavLink to="/wall"><span>砖墙(作品集)</span></NavLink>

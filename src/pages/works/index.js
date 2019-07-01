@@ -4,7 +4,7 @@ import {tosts} from '@/ui'
 import {addSearch,removeSearch,getParams} from '../../utils/url'
 import projectCategory from '../../config/projectCategory'
 import projectLayout from '../../config/projectLayout'
-import defaultWallListImg from '../../assets/img/defaultWallList.jpg'
+import defaultWallListImg from '../../assets/img/defaultWallList.png'
 import './index.css'
 
 export default class Wall extends React.Component {
