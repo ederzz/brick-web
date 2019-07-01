@@ -31,7 +31,8 @@ export default class Preview extends React.Component {
     super(props);
     this.state = {
       error: null,
-      errorInfo: null
+      errorInfo: null,
+      empty: null,
     };
   }
 
@@ -136,6 +137,8 @@ export default class Preview extends React.Component {
 
         document.querySelector('#iframe').setAttribute('srcdoc', page)
 
+      }else{
+        this.setState({empty: res.message || '获取相关模块出错'})
       }
     })
 
@@ -156,6 +159,17 @@ export default class Preview extends React.Component {
           </h2>
           <p className="err-info">请查看地址栏传入的JSON格式</p>
           <pre className="err-fail">{this.state.errorInfo.toString()}</pre>
+        </div>
+      );
+    }
+
+    if(this.state.empty) {
+      return (
+        <div className="err clearfix">
+          <h2 className="err-title">
+            {this.state.empty}
+          </h2>
+          <p className="err-fail">请查看地址栏传入的JSON中包含的模块名是否合法</p>
         </div>
       );
     }

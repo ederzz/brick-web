@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {tosts} from '@/ui'
 import {addSearch,removeSearch,getParams} from '../../utils/url'
 import projectCategory from '../../config/projectCategory'
@@ -77,9 +78,10 @@ export default class Wall extends React.Component {
     if(Array.isArray(data) && data.length) {
       const lis = data.map(v=>{
         return <li key={v.name}>
-          <a href={`/p?json=${v.code}`} target="_blank">
+          <a className="thumb" href={`/p?json=${v.code}`} target="_blank">
             <img src={defaultWallListImg}/>
           </a>
+          <Link className="update btn btn-s btn-success" to={`/works/${v.id}`} target="_blank">修改</Link>
           <div>
             <strong>{v.name}</strong>
           </div>
@@ -87,7 +89,7 @@ export default class Wall extends React.Component {
       })
 
       return <div className="wrap">
-        <ul className="brick-list">
+        <ul className="p-works-list">
           {lis}
         </ul>
       </div>
@@ -97,10 +99,12 @@ export default class Wall extends React.Component {
   }
 
   render() {
-    const {category, layout} = this.state
     return (
-      <div className="brick">
+      <div className="p-works">
         {this.getList()}
+        <div className="handle">
+          <Link className="btn btn-primary" to="/works/0" target="_blank">创建</Link>
+        </div>
       </div>
     )
   }

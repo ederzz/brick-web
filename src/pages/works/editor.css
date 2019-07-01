@@ -8,8 +8,54 @@
     top: 0;
     right: 0;
     width: 300px;
+    height: 100%;
 }
 
-.works-editor .detail .btn {
-    width: 30%;
+.works-editor .detail .formitem .lab {
+    width: 64px;
+}
+
+.works-editor .detail .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+.works-editor .detail .footer .btn {
+    width: 100px;
+    margin: 0 8px;
+}
+
+.works-editor .detail .footer .btn.loading {
+    position: relative;
+}
+
+.works-editor .detail .footer .btn.loading::before {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    content: ' ';
+    background-color: rgba(255,255,255,0.8);
+}
+
+.works-editor .detail .footer .btn.loading::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: ' ';
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    background: url("../../assets/img/loading.png");
+    background-size: 100% 100%;
+    animation: animate 1s linear infinite;
+}
+
+@keyframes animate {
+    to {
+        transform: rotate(360deg);
+    }
 }

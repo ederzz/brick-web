@@ -82,6 +82,7 @@ const getPage = (bui) => {
 
 const getCodes = (bui) => {
   // mn modelName
+  console.log('getCodes',bui)
   let htmlCode = ''
   if(bui.ui && bui.brick) {
     htmlCode = codeList[bui.ui] && codeList[bui.ui].html ? codeList[bui.ui].html : `没有找到 {{${bui.ui}}} 模块`
@@ -110,7 +111,15 @@ const getCodes = (bui) => {
     }else{
       htmlCode = codeList[modelName] && codeList[modelName].html ? codeList[modelName].html : `没有找到 {{${modelName}}} 模块`
     }
+
+    console.log('htmlCode',htmlCode)
+
+    if(!htmlCode) {
+      htmlCode = `没有找到 {{${modelName}}} 模块`
+    }
+
     if(codeList[modelName] && !srcHistory.includes(modelName)) {
+      // css  js 不要重复添加
       cssList.push(codeList[modelName].css || '')
       jsList.push(codeList[modelName].js || '')
       srcHistory.push(modelName)
@@ -121,7 +130,7 @@ const getCodes = (bui) => {
 }
 
 const main = (bui,data) => {
-  //console.log('build page',bui,data)
+  console.log('build page',bui,data)
   codeList = data
   //getCode(bui)
   //getPage()
