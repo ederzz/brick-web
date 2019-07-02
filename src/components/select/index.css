@@ -23,12 +23,12 @@
     left: 0;
     z-index: 1;
     width: 100%;
+    height: 200px;
     border: 1px solid #d9d9d9;
     background-color: #fff;
 }
 
 .select ul {
-    max-height: 200px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -36,6 +36,7 @@
 
 .select ul li{
     display: block;
+    height: 30px;
     margin: 0;
     padding: 0 10px;
     line-height: 30px;

@@ -49,7 +49,7 @@ export default class Select extends React.Component {
     }
 
     return <div className="options">
-      <Scroll autoHeight>
+      <Scroll>
         <ul>
           {lis}
         </ul>

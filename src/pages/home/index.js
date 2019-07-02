@@ -15,7 +15,7 @@ export default class Home extends React.Component {
     this.state = {
       code: '// 输入一个JSON\n' +
       '{\n' +
-      '  ui: \"crm-layout\",\n' +
+      '  ui: \"sys-layout\",\n' +
       '  brick: {\n' +
       '  }\n' +
       '}',

@@ -7,19 +7,23 @@ export default class ExplainDemo extends React.Component {
     super(props)
     this.textareaRef = React.createRef()
     this.demoCode = '{\n' +
-      '  ui: "crm-layout",\n' +
+      '  ui: "sys-layout",\n' +
       '  brick: {\n' +
-      '    aside: "crm-aside",\n' +
-      '    header: "crm-header",\n' +
+      '    aside: "sys-aside",\n' +
+      '    header: "sys-header",\n' +
       '    body: [\n' +
       '      {\n' +
-      '        ui: "crm-panel"\n' +
+      '        ui: "sys-panel",\n' +
+      '        brick: {\n' +
+      '          title: "面板标题/s",\n' +
+      '          body: ""\n' +
+      '        }\n' +
       '      },\n' +
       '      {\n' +
-      '        ui: "crm-panel"\n' +
+      '        ui: "sys-panel"\n' +
       '      },\n' +
       '      {\n' +
-      '        ui: "crm-panel"\n' +
+      '        ui: "sys-panel"\n' +
       '      }\n' +
       '    ]\n' +
       '  }\n' +
