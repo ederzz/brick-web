@@ -3,79 +3,22 @@
 //import readFile from './readFile'
 // html='',css='',js='',
 
-let codeList=[], cssList=[], jsList=[], srcHistory=[]
-
-/*
-
-const getCode = (bui,pk) => {
-  for(const k in bui) {
-    if(typeof bui[k] === 'object' && Array.isArray(bui[k])) {
-      // 数组
-      let length = bui[k].length
-      let r = ''
-      if(length > 1) {
-        while (length > 0) {
-          r+=`{{${k}}}`
-          --length
-        }
-      }
-      console.log('r',r,bui,pk)
-      html = html.replace(`{{${k}}}`,r) // 如果是数组 那么就会替换多次 提前复制备用
-      for(const o of bui[k]) {
-        getCode(o,k)
-      }
-    }else if(typeof bui[k] === 'object') {
-      // 对象
-      console.log('对象',bui,pk,k)
-      const o = bui[k]
-      getCode(o,k)
-    }else if(/[a-zA-Z0-9\-]+/.test(bui[k])) {
-      console.log('bui[k]',bui[k],codeList)
-      const htmlItem = codeList[bui[k]] && codeList[bui[k]].html ? codeList[bui[k]].html : `没有找到${bui[k]}模块`// html 替换
-      css += codeList[bui[k]] && codeList[bui[k]].css ? codeList[bui[k]].css : '' // css 累加
-      js += codeList[bui[k]] && codeList[bui[k]].js ? codeList[bui[k]].js+';' : '' // js 累加 后面加分号
-      if (html === '') {
-        // 初始值
-        html = htmlItem
-      } else {
-        if(k === 'ui') {
-          // ui 库 替换的是 父属性的名称
-          console.log('pk',pk)
-          html = html.replace(`{{${pk}}}`,htmlItem)
-        }else{
-          // 普通组件 直接替换
-          html = html.replace(`{{${k}}}`,htmlItem)
-        }
-      }
-    }
-  }
-}
-
-const getPageOld = () => {
-
-  console.log(html,html.indexOf('</head>'),html.indexOf('</body>'))
-
-  if(!html || html.indexOf('</head>') === -1 || html.indexOf('</body>') === -1) {
-    html = '<html><head><link rel="stylesheet" media="all" href="//cdn.brickui.com/bui/reset.min.css"></head><body>'+html+'</body></html>'
-  }
-
-  html = html.replace('</head>','<style>'+css+'</style></head>')
-  html = html.replace('</body>','<script>'+js+'</script></body>')
-}
-*/
+let codeList=[], cssList=[], jsList=[], babelList=[], srcHistory=[]
 
 const getPage = (bui) => {
 
   let html = getCodes(bui)
   let css = cssList.join('\n')
   let js = jsList.join('\n;')
+  let babelJs = babelList.join('\n;')
 
   if(!html || html.indexOf('</head>') === -1 || html.indexOf('</body>') === -1) {
     html = '<html><head><link rel="stylesheet" media="all" href="//cdn.brickui.com/bui/reset.min.css"></head><body>'+html+'</body></html>'
   }
 
   html = html.replace('</head>','<style>'+css+'</style></head>')
-  html = html.replace('</body>','<script>'+js+'</script></body>')
+  js && (html = html.replace('</body>','<script>'+js+'</script></body>'))
+  babelJs && (html = html.replace('</body>','<script type="text/babel">'+babelJs+'</script></body>'))
 
   return html
 }
@@ -84,15 +27,40 @@ const getCodes = (bui) => {
   // mn modelName
   console.log('getCodes',bui)
   let htmlCode = ''
+  let jsCode = ''
+  let cssCode = ''
   if(bui.ui && bui.brick) {
-    htmlCode = codeList[bui.ui] && codeList[bui.ui].html ? codeList[bui.ui].html : `没有找到 {{${bui.ui}}} 模块`
-    if(codeList[bui.ui] && !srcHistory.includes(bui.ui)) {
-      cssList.push(codeList[bui.ui].css || '')
-      jsList.push(codeList[bui.ui].js || '')
-      srcHistory.push(bui.ui)
+
+    let uiName = bui.ui
+
+    if(/\/</.test(bui.ui)) {
+      htmlCode = bui.ui.slice(bui.ui.indexOf('<'))
+      uiName = uiName.slice(0,uiName.indexOf('/'))
+    }else{
+      htmlCode = codeList[bui.ui] && codeList[bui.ui].html ? codeList[bui.ui].html : `没有找到 ||${bui.ui}|| 模块`
     }
+    jsCode = codeList[uiName] && codeList[uiName].js ? codeList[uiName].js : ''
+    cssCode = codeList[uiName] && codeList[uiName].css ? codeList[uiName].css : ''
+    console.log('jsCode 1',bui.ui, uiName, jsCode)
     for(const modelName in bui.brick) {
-      htmlCode = htmlCode.replace(`{{${modelName}}}`,getCodes(bui.brick[modelName]))
+      console.log('modelName 1',modelName)
+      const thisHtmlCode = getCodes(bui.brick[modelName])
+      htmlCode = htmlCode.replace(`||${modelName}||`,thisHtmlCode)
+      // 替换掉js代码里 ||model|| 为 <Model />
+      // 1 有参数 <ModelName ||...params|| />
+      // 2 无参数 使用 html 里面的 jsx
+      // 3 缺省 <ModelName />
+      jsCode = jsCode.replace(`||${modelName}||`,thisHtmlCode)
+    }
+    if(codeList[uiName] && !srcHistory.includes(uiName)) {
+      console.log('jsCode 2',jsCode)
+      cssList.push(cssCode)
+      if(['babel','react'].includes(codeList[uiName].stack)) {
+        babelList.push(jsCode)
+      }else{
+        jsList.push(jsCode)
+      }
+      srcHistory.push(bui.ui)
     }
   } else if(Array.isArray(bui)) {
     let arrCode = ''
@@ -100,28 +68,41 @@ const getCodes = (bui) => {
       arrCode += getCodes(obj)
     }
     htmlCode = arrCode
-    //htmlCode = htmlCode.replace(`{{${mn}}}`,arrCode)
+    //htmlCode = htmlCode.replace(`||${mn||}`,arrCode)
   } else {
     // {ui: "crm-panel"}
     // crm-aside
-    const modelName = bui.ui || bui
-    //console.log('字符串',modelName,bui)
+    let modelName = bui.ui || bui
+    console.log('字符串',modelName,bui)
     if(/\/s$/.test(modelName)) {
       htmlCode = decodeURIComponent(modelName.replace(/\/s$/,''))
+    }else if(/\/</.test(modelName)) {
+      htmlCode = modelName.slice(modelName.indexOf('<'))
+      modelName = modelName.slice(0,modelName.indexOf('/'))
+      console.log('modelName 2', modelName)
+      jsCode = codeList[modelName] && codeList[modelName].js ? codeList[modelName].js : ''
+      cssCode = codeList[modelName] && codeList[modelName].css ? codeList[modelName].css : ''
     }else{
-      htmlCode = codeList[modelName] && codeList[modelName].html ? codeList[modelName].html : `没有找到 {{${modelName}}} 模块`
+      htmlCode = codeList[modelName] && codeList[modelName].html ? codeList[modelName].html : `没有找到 ||${modelName}|| 模块`
+      jsCode = codeList[modelName] && codeList[modelName].js ? codeList[modelName].js : ''
+      cssCode = codeList[modelName] && codeList[modelName].css ? codeList[modelName].css : ''
     }
 
     console.log('htmlCode',htmlCode)
+    console.log('jsCode 4',modelName, jsCode)
 
     if(!htmlCode) {
-      htmlCode = `没有找到 {{${modelName}}} 模块`
+      htmlCode = `没有找到 ||${modelName}|| 模块`
     }
 
     if(codeList[modelName] && !srcHistory.includes(modelName)) {
       // css  js 不要重复添加
-      cssList.push(codeList[modelName].css || '')
-      jsList.push(codeList[modelName].js || '')
+      cssList.push(cssCode)
+      if(['babel','react'].includes(codeList[modelName].stack)) {
+        babelList.push(jsCode)
+      }else{
+        jsList.push(jsCode)
+      }
       srcHistory.push(modelName)
     }
   }

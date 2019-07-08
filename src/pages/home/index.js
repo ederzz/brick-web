@@ -4,6 +4,7 @@ import Code from './code'
 import Explain from './explain'
 import ENV from '../../config/env'
 import CreateWorks from '../../components/createWorks'
+import {jsonToUrl} from '../../utils/url'
 
 import './index.css'
 //import './codemirror.css'
@@ -38,6 +39,7 @@ export default class Home extends React.Component {
   render() {
     const { code, createWorksVisible } = this.state
     const {httpAgent} = this.props
+    const jsonUrl = jsonToUrl(code)
     console.log('home render',this.props)
     return (
       <div className="wrap clearfix">
@@ -48,9 +50,9 @@ export default class Home extends React.Component {
         </div>
 
         <div className="home-url">
-          <input id="url" value={`${ENV.HOME}/p?json=${code}`} />
+          <input id="url" value={`${ENV.HOME}/p?json=${jsonUrl}`} />
           <a
-            href={`${ENV.HOME}/p?json=${code}`}
+            href={`${ENV.HOME}/p?json=${jsonUrl}`}
             target="_p"
             className="url-view"
             onMouseEnter={(e) => {

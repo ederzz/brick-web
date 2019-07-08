@@ -33,8 +33,19 @@ const removeSearch = (name) => {
   }
 }
 
+const jsonToUrl = (json) => {
+  let code = json
+  code = code.replace(/\/\/.*/g, "")
+  code = code.replace(/\s/g, "")
+  code = code.replace(/[a-zA-Z0-9]+(?=:)/g,'"$&"')
+  code = code.replace(/'/g,'"')
+
+  return code
+}
+
 export {
   addSearch,
   removeSearch,
-  getParams
+  getParams,
+  jsonToUrl
 }

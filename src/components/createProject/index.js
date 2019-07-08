@@ -4,6 +4,7 @@ import './index.css'
 import Select from '../../components/select'
 import projectCategory from '../../config/projectCategory'
 import projectLayout from '../../config/projectLayout'
+import projectStack from '../../config/projectStack'
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class Login extends React.Component {
     this.state = {
       category:{},
       layout:{},
+      stack:{},
       name:'',
       tags:'',
       description:'',
@@ -42,7 +44,7 @@ export default class Login extends React.Component {
   }
 
   onCheck = () => {
-    const {category, layout, name, tags, description} = this.state
+    const {category, layout, stack, name, tags, description} = this.state
     let error
     if(!name) {
       error = '请填写项目名称'
@@ -50,6 +52,8 @@ export default class Login extends React.Component {
       error = '请选择模块'
     }else if(!layout || !layout.value) {
       error = '请填选择布局'
+    }else if(!stack || !stack.value) {
+      error = '请填选择技术栈'
     }else if(!tags) {
       error = '请填写标签'
     }else if(!description) {
@@ -61,7 +65,7 @@ export default class Login extends React.Component {
 
   onCreate = () => {
     const {httpAgent, modalClose, getData} = this.props
-    const {category, layout, name, tags, description} = this.state
+    const {category, layout, stack, name, tags, description} = this.state
 
     const check = this.onCheck()
     if(check) {
@@ -73,6 +77,7 @@ export default class Login extends React.Component {
       name,
       category:category && category.value,
       layout: layout && layout.value,
+      stack: stack && stack.value,
       tags:tags.split(/;|；/),
       description
     }
@@ -91,7 +96,7 @@ export default class Login extends React.Component {
 
   render() {
     const {modalClose} = this.props
-    const {category, layout, name, tags, description, nameErr } = this.state
+    const {category, layout, stack, name, tags, description, nameErr } = this.state
     return (<Modal
       show={true}
       onMask={modalClose}
@@ -122,6 +127,12 @@ export default class Login extends React.Component {
           <label className="lab">响应：</label>
           <div className="mix">
             <Select value={layout} options={projectLayout} onChange={(option)=>{this.onSelectChange('layout',option)}} />
+          </div>
+        </div>
+        <div className="formitem">
+          <label className="lab">技术栈：</label>
+          <div className="mix">
+            <Select value={stack} options={projectStack} onChange={(option)=>{this.onSelectChange('stack',option)}} />
           </div>
         </div>
         <div className="formitem">

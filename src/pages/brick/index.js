@@ -3,6 +3,7 @@ import {tosts} from '@/ui'
 import {addSearch,removeSearch,getParams} from '../../utils/url'
 import projectCategory from '../../config/projectCategory'
 import projectLayout from '../../config/projectLayout'
+import projectStack from '../../config/projectStack'
 import defaultWallListImg from '../../assets/img/defaultWallList.png'
 import './index.css'
 
@@ -12,6 +13,7 @@ export default class Wall extends React.Component {
     this.state = {
       category: '',
       layout: '',
+      stack: '',
       data:[],
     }
   }
@@ -19,16 +21,18 @@ export default class Wall extends React.Component {
   componentDidMount() {
     const category = getParams('category')
     const layout = getParams('layout')
+    const stack = getParams('stack')
     category && this.setState({category})
     layout && this.setState({layout})
-    this.getData(category,layout)
-    console.log('componentDidMount',category,layout)
+    stack && this.setState({stack})
+    this.getData(category,layout,stack)
+    console.log('componentDidMount',category,layout,stack)
   }
 
   select = (name, value) => {
-    const {category, layout} = this.state
+    const {category, layout, stack} = this.state
     let search
-    if(value === category || value === layout) {
+    if(value === category || value === layout || value === stack) {
       // 如果点击的是高亮 则取消
       search = removeSearch(name)
       this.setState({[name]: ''},()=>{
@@ -44,23 +48,26 @@ export default class Wall extends React.Component {
 
   go = (search, name, value) => {
     const {history} = this.props
-    const {category, layout} = this.state
+    const {category, layout,stack} = this.state
     if(name === 'category') {
-      this.getData(value,layout)
+      this.getData(value,layout,stack)
     }else if(name === 'layout') {
-      this.getData(category,value)
+      this.getData(category,value,stack)
+    }else if(name === 'stack') {
+      this.getData(category,layout,value)
     }
     history.push(`/brick/${search}`)
   }
 
 
 
-  getData = (category,layout) => {
+  getData = (category,layout,stack) => {
     const {httpAgent} = this.props
 
     let url = `/brick/getList/?page=1`
     category && (url+=`&category=${category}`)
     layout && (url+=`&layout=${layout}`)
+    stack && (url+=`&stack=${stack}`)
 
     httpAgent.get(url).then(res => {
       const {code, message, data} = res
@@ -77,7 +84,7 @@ export default class Wall extends React.Component {
     if(Array.isArray(data) && data.length) {
       const lis = data.map(v=>{
         return <li key={v.name}>
-          <a href={`/p?json={"ui":"${v.name}"}`} target="_blank">
+          <a href={this.getLink(v)} target="_blank">
             <img src={defaultWallListImg}/>
           </a>
           <div>
@@ -97,8 +104,28 @@ export default class Wall extends React.Component {
     }
   }
 
+  getLink = (v) => {
+    if(v.category === 'template') {
+      // 模版可以直接渲染
+      return `/p?json={"ui":"${v.name}"}`
+    }else if(v.stack === 'native') {
+      // 其它模块 需要使用相关模版进行渲染
+      return `/p?json={"ui":"native-template","brick":{"app":"${v.name}"}}`
+    }else if(v.stack === 'babel') {
+      return `/p?json={"ui":"babel-template","brick":{"app":"${v.name}"}}`
+    }else if(v.stack === 'jquery') {
+      return `/p?json={"ui":"jquery-template","brick":{"app":"${v.name}"}}`
+    }else if(v.stack === 'react') {
+      return `/p?json={"ui":"react-template","brick":{"app":"${v.name}"}}`
+    }else if(v.stack === 'vue') {
+      return `/p?json={"ui":"vue-template","brick":{"app":"${v.name}"}}`
+    }else{
+      return `/p?json={"ui":"${v.name}"}`
+    }
+  }
+
   render() {
-    const {category, layout} = this.state
+    const {category, layout, stack} = this.state
     return (
       <div className="brick">
         <div className="brick-nav wrap">
@@ -126,6 +153,20 @@ export default class Wall extends React.Component {
                     this.select('layout', v.value)
                   }}
                   className={layout === v.value ? 'active' : ''}
+                >{v.name}</li>
+              })
+            }
+          </ul>
+          <ul>
+            <li>技术栈</li>
+            {
+              projectStack.map(v => {
+                return <li
+                  key={v.value}
+                  onClick={() => {
+                    this.select('stack', v.value)
+                  }}
+                  className={stack === v.value ? 'active' : ''}
                 >{v.name}</li>
               })
             }

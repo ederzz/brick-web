@@ -1,5 +1,9 @@
 export default [
   {
+    name: '模版',
+    value: 'template',
+  },
+  {
     name: '布局',
     value:'layout',
   },
@@ -42,6 +46,14 @@ export default [
   {
     name: '评论',
     value:'post',
+  },
+  {
+    name: '图片',
+    value:'img',
+  },
+  {
+    name: '用户',
+    value:'user',
   },
   {
     name: '组件',

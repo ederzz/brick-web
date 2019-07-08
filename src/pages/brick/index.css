@@ -15,6 +15,7 @@
 }
 
 .brick-nav ul li:first-child {
+    width: 64px;
     color: #333;
     background-color: transparent;
 }

@@ -1,6 +1,6 @@
 export default [
   {
-    name: '原生',
+    name: 'Native',
     value:'native',
   },
   {

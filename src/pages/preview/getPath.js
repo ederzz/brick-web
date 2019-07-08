@@ -17,8 +17,12 @@ const getPath = (bui) => {
       // /[a-zA-Z0-9_.]+\/[a-zA-Z0-9_.]+/
       // 地址
       //console.log('1',k,bui,bui[k])
-      const path = bui[k]
-      paths.push(path)
+      let path = bui[k]
+      if(/\/</.test(path)) {
+        paths.push(path.slice(0,path.indexOf('/')))
+      }else{
+        paths.push(path)
+      }
     }
 
   }

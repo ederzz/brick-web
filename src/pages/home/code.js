@@ -34,12 +34,10 @@ export default class Code extends React.Component {
   onChange = (doc, change) => {
     //console.log('on change',doc.getValue())
     let code = doc.getValue()
-    code = code.replace(/\/\/.*/g, "")
-    //code = code.replace(/[\r\n]/g, "")
-    //code = code.replace(/\ +/g, "")
-    code = code.replace(/\s/g, "")
-    code = code.replace(/[a-zA-Z0-9]+(?=:)/g,'"$&"')
-    code = code.replace(/'/g,'"')
+    //code = code.replace(/\/\/.*/g, "")
+    //code = code.replace(/\s/g, "")
+    //code = code.replace(/[a-zA-Z0-9]+(?=:)/g,'"$&"')
+    //code = code.replace(/'/g,'"')
     this.props.setCode(code)
   }
 

@@ -61,7 +61,7 @@
   },
   "scripts": {
     "start": "cross-env PORT=8080 REACT_APP_ENV=development node scripts/start.js",
-    "build": "cross-env REACT_APP_ENV=production node scripts/build.js",
+    "build": "cross-env REACT_APP_ENV=production PUBLIC_URL=//cdn.brickui.com node scripts/build.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
