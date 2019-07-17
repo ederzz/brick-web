@@ -9,14 +9,60 @@ import projectStack from '../../config/projectStack'
 export default class Login extends React.Component {
   constructor(props) {
     super(props)
+
+    let category = {},layout={},stack={},name='',description='';
+
+    if(props.editorInfo) {
+
+      name = props.editorInfo.name
+
+      description = props.editorInfo.description
+
+      for(const o of projectCategory) {
+        if(props.editorInfo.category && o.value === props.editorInfo.category) {
+          category = o
+          break
+        }
+      }
+
+      for(const o of projectLayout) {
+        if(props.editorInfo.layout && o.value === props.editorInfo.layout) {
+          layout = o
+          break
+        }
+      }
+
+      for(const o of projectStack) {
+        if(props.editorInfo.stack && o.value === props.editorInfo.stack) {
+          stack = o
+          break
+        }
+      }
+
+
+    }
+
     this.state = {
-      category:{},
-      layout:{},
-      stack:{},
-      name:'',
+      category,
+      layout,
+      stack,
+      name,
       tags:'',
-      description:'',
+      description,
       nameErr: '',
+    }
+  }
+
+  componentDidMount () {
+    const {httpAgent, editorInfo} = this.props
+    if(editorInfo) {
+      const ids = editorInfo.tags_id.split(',')
+      httpAgent.post('/dev/getTags', {ids}).then(res => {
+        const {code, data} = res
+        if (code === 0 && Array.isArray(data) && data.length) {
+          this.setState({tags:data.join(',')})
+        }
+      })
     }
   }
 
@@ -64,7 +110,7 @@ export default class Login extends React.Component {
   }
 
   onCreate = () => {
-    const {httpAgent, modalClose, getData} = this.props
+    const {httpAgent, modalClose, getData, editorInfo} = this.props
     const {category, layout, stack, name, tags, description} = this.state
 
     const check = this.onCheck()
@@ -81,7 +127,14 @@ export default class Login extends React.Component {
       tags:tags.split(/;|；/),
       description
     }
-    httpAgent.post('/dev/create', body).then(res => {
+
+    const url = editorInfo ? '/dev/update' : '/dev/create'
+
+    if(editorInfo) {
+      body.id = editorInfo.id
+    }
+
+    httpAgent.post(url, body).then(res => {
       const {code, message} = res
       if (code === 0) {
         tosts.success(message)
@@ -95,8 +148,9 @@ export default class Login extends React.Component {
 
 
   render() {
-    const {modalClose} = this.props
+    const {modalClose, editorInfo} = this.props
     const {category, layout, stack, name, tags, description, nameErr } = this.state
+    console.log('render',this.state)
     return (<Modal
       show={true}
       onMask={modalClose}
@@ -149,7 +203,7 @@ export default class Login extends React.Component {
         </div>
         <div className="formitem">
           <div className="mix">
-            <button className="btn btn-primary" onClick={this.onCreate}>创建</button>
+            <button className="btn btn-primary" onClick={this.onCreate}>{editorInfo ? '修改' : '创建'}</button>
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import getPath from './getPath'
 //import downFile from './downFile'
 //import buildFile from './buildFile'
 import buildPage from './buildPage'
+import buildReactPage from './buildReactPage'
 import {getParams} from '../../utils/url'
 import './index.css'
 
@@ -133,7 +134,21 @@ export default class Preview extends React.Component {
         // 使用缓存的文件 生成网页
         //const page = buildFile(pageJson)
 
-        const page = buildPage(pageJson,res.data)
+        let page = ''
+        let stack = 'native'
+
+        for(const i in res.data) {
+          if(res.data[i].stack === 'react') {
+            stack = 'react'
+            break
+          }
+        }
+
+        if(stack === 'react') {
+          page = buildReactPage(pageJson,res.data)
+        }else{
+          page = buildPage(pageJson,res.data)
+        }
 
         document.querySelector('#iframe').setAttribute('srcdoc', page)
 

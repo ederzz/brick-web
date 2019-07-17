@@ -19,6 +19,7 @@ import Works from './pages/works'
 import WorksEditor from './pages/works/editor'
 import Collect from './pages/collect'
 import Top from './components/top'
+import Footer from './components/footer'
 import Login from './components/login'
 import Register from './components/register'
 import {tosts} from '@/ui'
@@ -74,6 +75,7 @@ export default class App extends React.Component {
     const {userStatus, userInfo} = this.state
     const {noTop = false, mastLogin = false} = params
     const topCom = <Top changeUserStatus={this.changeUserStatus} userInfo={userInfo} loginOut={this.loginOut}/>
+    const footerCom = <Footer/>
     const loginProps = {
       changeUserStatus: this.changeUserStatus,
       httpAgent: this.agent,
@@ -92,6 +94,7 @@ export default class App extends React.Component {
         {userStatus === 'register' ? <Register {...registerProps} /> : <Login {...loginProps} />
         }
         {noTop ? null : topCom}
+        {noTop ? null : footerCom}
       </div>)
     }
 
@@ -99,6 +102,7 @@ export default class App extends React.Component {
       {userStatus === 'login' ? <Login {...loginProps} close={true} /> : (userStatus === 'register' ? <Register {...registerProps} close={true} /> : null)}
       {noTop ? null : topCom}
       <Comp {...props} {...{userInfo, httpAgent: this.agent}}/>
+      {noTop ? null : footerCom}
     </div>)
   }
 

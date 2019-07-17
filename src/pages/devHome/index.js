@@ -12,6 +12,7 @@ export default class DevHome extends React.Component {
     this.state = {
       data: [],
       visible: false,
+      editorInfo: undefined, // 编辑的信息
     }
 
   }
@@ -38,11 +39,15 @@ export default class DevHome extends React.Component {
     if (Array.isArray(data) && data.length) {
 
       const lis = data.map(v => {
-        return <Link to={`/dev/${v.name}`} key={v.name}><i></i><span>{v.name}</span></Link>
+        return <li>
+          <i className="icon"></i>
+          <span className="name">{v.name}</span>
+          <Link className="editor" to={`/dev/${v.name}`} key={v.name}></Link>
+          <i className="set" onClick={()=>{this.onSet(v)}}/>
+        </li>
       })
 
-      return <div className="my-pro-list clearfix">{lis}</div>
-
+      return <ul className="my-pro-list clearfix">{lis}</ul>
     } else {
       return null
     }
@@ -56,17 +61,25 @@ export default class DevHome extends React.Component {
     this.setState({visible: false})
   }
 
+  onCreate = () => {
+    this.setState({editorInfo: undefined},this.modalOpen)
+  }
+
+  onSet = (editorInfo) => {
+    this.setState({editorInfo},this.modalOpen)
+  }
+
   render() {
     const {httpAgent} = this.props
-    const {visible} = this.state
+    const {visible, editorInfo} = this.state
     return (
       <div className="wrap">
         {this.getList()}
         <div className="my-pro-create-btn">
-          <div className="btn btn-primary" onClick={this.modalOpen}>创建</div>
+          <div className="btn btn-primary" onClick={this.onCreate}>创建</div>
           <Link to="/rule" target="_blank" className="btn btn-link">请查看开发规范</Link>
         </div>
-        {visible ? <CreateProject httpAgent={httpAgent} modalClose={this.modalClose} getData={this.getData}/> : null}
+        {visible ? <CreateProject httpAgent={httpAgent} modalClose={this.modalClose} getData={this.getData} editorInfo={editorInfo}/> : null}
       </div>
     )
   }
