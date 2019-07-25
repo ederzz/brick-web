@@ -1,5 +1,6 @@
 import React from 'react'
 import {toolTip} from '@/ui'
+import Editor from './editor'
 import Code from './code'
 import Explain from './explain'
 import ENV from '../../config/env'
@@ -7,20 +8,48 @@ import CreateWorks from '../../components/createWorks'
 import {jsonToUrl} from '../../utils/url'
 
 import './index.css'
-//import './codemirror.css'
-//import './panda-syntax.css'
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      code: '// 输入一个JSON\n' +
+      codeOld: '// 输入一个JSON\n' +
       '{\n' +
       '  ui: \"sys-layout\",\n' +
       '  brick: {\n' +
       '  }\n' +
       '}',
       createWorksVisible: false,
+      code: '{\n' +
+      '      "ui": "sys-layout",\n' +
+      '      "brick": {\n' +
+      '        "aside": "sys-aside",\n' +
+      '        "header": {\n' +
+      '            "ui": "sys-header",\n' +
+      '            "brick": {\n' +
+      '               "logo":"sys-logo"\n' +
+      '            }\n' +
+      '},\n' +
+      '        "body": [\n' +
+      '          {\n' +
+      '            "ui": "sys-panel",\n' +
+      '            "brick": {\n' +
+      '              "title": "面板标题/s",\n' +
+      '              "body": ""\n' +
+      '            }\n' +
+      '          },\n' +
+      '          {\n' +
+      '            "ui": "sys-panel"\n' +
+      '          },\n' +
+      '          {\n' +
+      '            "ui": "sys-panel"\n' +
+      '          },\n' +
+      '          {\n' +
+      '            "ui": ""\n' +
+      '          }\n' +
+      '        ]\n' +
+      '      }\n' +
+      '    }'
     }
   }
 
@@ -40,17 +69,14 @@ export default class Home extends React.Component {
     const { code, createWorksVisible } = this.state
     const {httpAgent} = this.props
     const jsonUrl = jsonToUrl(code)
-    console.log('home render',this.props)
+    //console.log('home render',this.props)
     return (
       <div className="wrap clearfix">
 
-        <div className="clearfix">
-          <Code code={code} setCode={this.setCode}/>
-          <Explain/>
-        </div>
+        <Editor code={code} setCode={this.setCode}/>
 
         <div className="home-url">
-          <input id="url" value={`${ENV.HOME}/p?json=${jsonUrl}`} />
+          <input id="url" readOnly value={`${ENV.HOME}/p?json=${jsonUrl}`} />
           <a
             href={`${ENV.HOME}/p?json=${jsonUrl}`}
             target="_p"

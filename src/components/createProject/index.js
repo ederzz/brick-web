@@ -10,13 +10,15 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props)
 
-    let category = {},layout={},stack={},name='',description='';
+    let category = {},layout={},stack={},name='',slots='',description='';
 
     if(props.editorInfo) {
 
       name = props.editorInfo.name
 
       description = props.editorInfo.description
+
+      slots = props.editorInfo.slots
 
       for(const o of projectCategory) {
         if(props.editorInfo.category && o.value === props.editorInfo.category) {
@@ -47,6 +49,7 @@ export default class Login extends React.Component {
       layout,
       stack,
       name,
+      slots,
       tags:'',
       description,
       nameErr: '',
@@ -90,7 +93,7 @@ export default class Login extends React.Component {
   }
 
   onCheck = () => {
-    const {category, layout, stack, name, tags, description} = this.state
+    const {category, layout, stack, name, slots, tags, description} = this.state
     let error
     if(!name) {
       error = '请填写项目名称'
@@ -100,6 +103,8 @@ export default class Login extends React.Component {
       error = '请填选择布局'
     }else if(!stack || !stack.value) {
       error = '请填选择技术栈'
+    }else if(!slots) {
+      error = '请填写插槽名称'
     }else if(!tags) {
       error = '请填写标签'
     }else if(!description) {
@@ -111,7 +116,7 @@ export default class Login extends React.Component {
 
   onCreate = () => {
     const {httpAgent, modalClose, getData, editorInfo} = this.props
-    const {category, layout, stack, name, tags, description} = this.state
+    const {category, layout, stack, name, slots, tags, description} = this.state
 
     const check = this.onCheck()
     if(check) {
@@ -124,6 +129,7 @@ export default class Login extends React.Component {
       category:category && category.value,
       layout: layout && layout.value,
       stack: stack && stack.value,
+      slots,
       tags:tags.split(/;|；/),
       description
     }
@@ -149,7 +155,7 @@ export default class Login extends React.Component {
 
   render() {
     const {modalClose, editorInfo} = this.props
-    const {category, layout, stack, name, tags, description, nameErr } = this.state
+    const {category, layout, stack, name, slots, tags, description, nameErr } = this.state
     console.log('render',this.state)
     return (<Modal
       show={true}
@@ -184,9 +190,15 @@ export default class Login extends React.Component {
           </div>
         </div>
         <div className="formitem">
-          <label className="lab">技术栈：</label>
+          <label className="lab">JS栈：</label>
           <div className="mix">
             <Select value={stack} options={projectStack} onChange={(option)=>{this.onSelectChange('stack',option)}} />
+          </div>
+        </div>
+        <div className="formitem">
+          <label className="lab">插槽：</label>
+          <div className="mix">
+            <input value={slots} name="slots" type="text" className="ipt" placeholder="多个插槽用分号(;)分隔" onChange={this.onChange}/>
           </div>
         </div>
         <div className="formitem">

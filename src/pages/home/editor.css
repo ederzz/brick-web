@@ -1,0 +1,35 @@
+.home-editor {
+   margin-top: 60px;
+}
+
+.home-tabs .head {
+    height: 30px;
+    line-height: 30px;
+}
+
+.home-tabs .head span {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 0 20px;
+    color: #fff;
+    background-color: #28292a;
+    cursor: pointer;
+    user-select: none;
+}
+
+.home-tabs .head span.active {
+    color: #19F9D8;
+}
+
+.home-tabs .body {
+    height: 570px;
+    border: 1px solid #28292a;
+}
+
+.home-tabs .body > div {
+    height: 100%;
+}
+
+.home-tabs .body .CodeMirror {
+    height: 100%;
+}

@@ -1,0 +1,100 @@
+.project-create {
+    padding: 24px;
+}
+
+.project-create .list {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.project-create .list .list {
+    margin: 0 0 16px 24px;
+    border-right: none;
+}
+
+.project-create .list li {
+}
+
+.project-create .list li:last-child {
+
+}
+
+.project-create .item {
+    padding: 0 24px;
+    height: 34px;
+    margin-bottom: 8px;
+    line-height: 34px;
+}
+
+.project-create .item > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.project-create .item .name {
+    position: relative;
+    width: 100px;
+    padding: 0 8px;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    color: #999;
+}
+
+.project-create .item .select {
+    width: 60px;
+}
+
+.project-create .item .select strong {
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    border-left: none;
+}
+
+.project-create .item .select .options {
+    height: 92px;
+}
+
+.project-create .item .input {
+    position: relative;
+    width: 200px;
+    height: 34px;
+    border-bottom: 1px solid #ccc;
+}
+
+.project-create .item .input input {
+    height: 32px;
+    line-height: 32px;
+    border: none;
+    outline: none;
+}
+
+.project-create .item .input::before,
+.project-create .item .input::after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    height: 3px;
+    background-color: #ccc;
+}
+
+.project-create .item .input::before {
+    left: 0;
+}
+
+.project-create .item .input::after {
+    right: 0;
+}
+
+.project-create .item .add,
+.project-create .item .remove {
+    width: 34px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    user-select: none;
+}

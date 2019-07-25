@@ -1,5 +1,9 @@
 export default [
   {
+    name: 'No JS',
+    value:'nojs',
+  },
+  {
     name: 'Native',
     value:'native',
   },

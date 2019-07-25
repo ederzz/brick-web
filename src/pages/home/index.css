@@ -32,38 +32,6 @@
     color: #666;
 }
 
-.home-tab .head {
-    height: 30px;
-    line-height: 30px;
-}
-
-.home-tab .head a {
-    display: inline-block;
-    margin-right: 4px;
-    padding: 0 20px;
-    color: #fff;
-    background-color: #28292a;
-    cursor: pointer;
-    user-select: none;
-}
-
-.home-tab .head a.active {
-    color: #19F9D8;
-}
-
-.home-tab .body {
-    height: 570px;
-    border: 1px solid #28292a;
-}
-
-.home-tab .body > div {
-    height: 100%;
-}
-
-.home-tab .body .CodeMirror {
-    height: 100%;
-}
-
 .home-url {
     position: relative;
     margin-top: 40px;

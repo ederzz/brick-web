@@ -1,0 +1,28 @@
+.module-toggle {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.module-toggle::before,
+.module-toggle::after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    height: 3px;
+    background-color: #ccc;
+}
+
+.module-toggle::before {
+    left: 0;
+}
+
+.module-toggle::after {
+    right: 0;
+}
