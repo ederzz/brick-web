@@ -1,0 +1,35 @@
+.assets-list {
+    margin: 0 -10px;
+    padding: 0;
+    list-style: none;
+}
+
+.assets-list li {
+    float: left;
+    margin: 16px 0 0 0;
+    padding: 0 10px;
+    width: 120px;
+    cursor: pointer;
+}
+
+.assets-list li i {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    background: url("./folder.png") no-repeat center;
+    background-size: cover;
+}
+
+.assets-list li span {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.assets-footer {
+    margin-top: 24px;
+    text-align: center;
+}

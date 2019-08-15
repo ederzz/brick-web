@@ -1,0 +1,73 @@
+.user-top {
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+}
+
+.user-top .header-icon {
+    width: 30px;
+    height: 50px;
+    padding: 10px 0;
+}
+
+.user-top .header-icon span {
+    display: block;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.user-top .header-icon img {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.user-menu {
+    z-index: 1;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 100px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 0 2px 0 #ccc;
+    background-color: #fff;
+}
+
+.user-menu li {
+    height: 30px;
+    padding: 0 14px;
+    line-height: 30px;
+}
+
+.user-menu li:first-child {
+    height: 31px;
+    border-bottom: 1px solid #ccc;
+}
+
+.user-menu li:last-child {
+    height: 31px;
+    border-top: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.user-menu li:hover {
+    color: #fff;
+    background-color: #39c;
+}
+
+.user-menu li:hover > a {
+    color: #fff;
+}
+
+.user-menu li > a {
+    display: block;
+}
+
+.user-menu li > a.active {
+    font-weight: 700;
+}

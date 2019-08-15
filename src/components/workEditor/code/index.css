@@ -1,0 +1,7 @@
+.work-code {
+    height: 568px;
+}
+
+.work-code .CodeMirror {
+    height: 100%;
+}

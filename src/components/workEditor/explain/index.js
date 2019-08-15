@@ -1,4 +1,5 @@
 import React from 'react'
+import './index.css'
 
 export default class ExplainInfo extends React.Component {
   render() {

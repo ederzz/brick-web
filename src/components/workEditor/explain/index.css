@@ -1,0 +1,14 @@
+
+.explain-info{
+    padding: 20px;
+}
+
+.explain-info-list {
+    padding: 0 20px;
+}
+
+.explain-info p {
+    margin: 0;
+    line-height: 26px;
+    color: #666;
+}

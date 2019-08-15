@@ -1,9 +1,14 @@
 .create-modal {
     margin: 100px auto;
-    width: 480px;
-    padding: 40px 60px;
+    width: 700px;
+    padding: 24px 24px 24px 0;
     border-radius: 3px;
     background-color: #fff;
+}
+
+.create-modal .formitem {
+    float: left;
+    width: 50%;
 }
 
 .create-modal .textarea {
@@ -21,4 +26,10 @@
 
 .create-modal .formitem .lab {
     width: 64px;
+}
+
+.create-modal .formitem .mix > .btn {
+    display: block;
+    width: 80px;
+    margin: 0 auto;
 }

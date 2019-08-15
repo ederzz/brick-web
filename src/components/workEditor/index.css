@@ -1,0 +1,108 @@
+.work-editor {
+    margin-top: 60px;
+}
+
+.work-tabs {
+    position: relative;
+}
+
+.work-tabs .head {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+}
+
+.work-tabs .head span {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 0 20px;
+    color: #fff;
+    background-color: #28292a;
+    cursor: pointer;
+    user-select: none;
+}
+
+.work-tabs .head span.active {
+    color: #19F9D8;
+}
+
+.work-tabs .head .tool {
+    position: absolute;
+    top: 100%;
+    right:1px;
+    left: 1px;
+    margin-top: 1px;
+    padding: 0 8px;
+    font-size: 12px;
+    background-color: #fff;
+}
+
+.work-tabs .head .tool .btn {
+    margin: 0 8px;
+}
+
+.work-tabs .body {
+    height: 570px;
+    border: 1px solid #28292a;
+}
+
+.work-tabs .body > div {
+    height: 100%;
+}
+
+.work-tabs .body .CodeMirror {
+    height: 100%;
+}
+
+.work-tabs .json-err {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    margin-top: 8px;
+    text-align: left;
+    background-color: #fee;
+    color: #933;
+    border: 2px solid #933;
+}
+
+.work-url {
+    position: relative;
+    margin-top: 40px;
+    padding-right: 160px;
+}
+
+.work-url input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 2px solid #28292a;
+    padding: 0 10px;
+    outline: none;
+    line-height: 36px;
+    color: #333;
+}
+
+.work-url button,
+.work-url a {
+    position: absolute;
+    top: 0;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: none;
+    outline: none;
+    color: #19F9D8;
+    background-color: #28292a;
+    cursor: pointer;
+}
+
+.work-url .url-view {
+    right: 80px;
+    width: 60px;
+}
+
+.work-url .url-save {
+    width: 60px;
+    right: 0;
+}

@@ -1,0 +1,47 @@
+.up-file-list {
+    position: absolute;
+    top: 100px;
+    bottom: 100px;
+    left: 50%;
+    padding-bottom: 66px;
+    width: 800px;
+    margin-left: -400px;
+    background-color: #fff;
+}
+
+.up-file-list .body {
+    height: 100%;
+}
+
+.up-file-list .list {
+    margin: 0;
+    padding: 16px;
+    list-style: none;
+}
+
+.up-file-list .list li {
+    margin: 16px 0 0 0;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+.up-file-list .list li:first-child {
+    border-top: 1px solid #ccc;
+}
+
+.up-file-list .list li p {
+    margin: 0;
+    line-height: 30px;
+}
+
+.up-file-list .footer {
+    position: absolute;
+    left: 0;
+    bottom: 16px;
+    width: 100%;
+    text-align: center;
+}
+
+.up-file-list .footer span {
+    margin: 0 16px;
+}

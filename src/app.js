@@ -13,10 +13,11 @@ import DevHome from './pages/devHome'
 import Dev from './pages/dev'
 import Preview from './pages/preview'
 import Brick from './pages/brick'
-import Wall from './pages/wall'
+import Web from './pages/web'
 import Rule from './pages/rule'
 import Works from './pages/works'
 import WorksEditor from './pages/works/editor'
+import Assets from './pages/assets'
 import Collect from './pages/collect'
 import Top from './components/top'
 import Footer from './components/footer'
@@ -115,10 +116,11 @@ export default class App extends React.Component {
           <Route path="/dev/:name" render={(props) => this.preRender(props, Dev, {noTop: true, mastLogin: true})}/>
           <Route path="/p" render={(props) => this.preRender(props, Preview, {noTop: true})}/>
           <Route path="/brick" render={(props) => this.preRender(props, Brick)}/>
-          <Route path="/wall" render={(props) => this.preRender(props, Wall)}/>
+          <Route path="/web" render={(props) => this.preRender(props, Web)}/>
           <Route path="/rule" render={(props) => this.preRender(props, Rule)}/>
           <Route exact path="/works" render={(props) => this.preRender(props, Works, {mastLogin: true})}/>
           <Route path="/works/:id" render={(props) => this.preRender(props, WorksEditor, {mastLogin: true})}/>
+          <Route exact path="/assets" render={(props) => this.preRender(props, Assets, {mastLogin: true})}/>
           <Route path="/collect" render={(props) => this.preRender(props, Collect, {mastLogin: true})}/>
         </Switch>
       </Router>

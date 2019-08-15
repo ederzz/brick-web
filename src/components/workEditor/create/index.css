@@ -35,12 +35,16 @@
 }
 
 .project-create .item .name {
+    overflow: hidden;
     position: relative;
     width: 100px;
     padding: 0 8px;
     border-bottom: 1px solid #ccc;
     border-left: 1px solid #ccc;
     color: #999;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    white-space: nowrap;
 }
 
 .project-create .item .select {

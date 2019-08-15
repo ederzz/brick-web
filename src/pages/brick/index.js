@@ -85,7 +85,7 @@ export default class Wall extends React.Component {
       const lis = data.map(v=>{
         return <li key={v.name}>
           <a href={this.getLink(v)} target="_blank">
-            <img src={defaultWallListImg}/>
+            <img src={v.thumb ? `//assets.brickui.com/${v.thumb}` : defaultWallListImg}/>
           </a>
           <div>
             <strong>{v.name}</strong>

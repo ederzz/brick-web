@@ -78,6 +78,7 @@ export default class DevHome extends React.Component {
         <div className="my-pro-create-btn">
           <div className="btn btn-primary" onClick={this.onCreate}>创建</div>
           <Link to="/rule" target="_blank" className="btn btn-link">请查看开发规范</Link>
+          <Link to="/assets" target="_blank" className="btn btn-link">素材管理</Link>
         </div>
         {visible ? <CreateProject httpAgent={httpAgent} modalClose={this.modalClose} getData={this.getData} editorInfo={editorInfo}/> : null}
       </div>

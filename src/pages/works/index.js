@@ -2,8 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {tosts} from '@/ui'
 import {addSearch,removeSearch,getParams,jsonToUrl} from '../../utils/url'
-import projectCategory from '../../config/projectCategory'
-import projectLayout from '../../config/projectLayout'
 import defaultWallListImg from '../../assets/img/defaultWallList.png'
 import './index.css'
 
@@ -59,7 +57,7 @@ export default class Wall extends React.Component {
   getData = (category,layout) => {
     const {httpAgent} = this.props
 
-    let url = `/wall/getMyList/?page=1`
+    let url = `/works/getMyList/?page=1`
     category && (url+=`&category=${category}`)
     layout && (url+=`&layout=${layout}`)
 
@@ -77,9 +75,9 @@ export default class Wall extends React.Component {
     const {data} = this.state
     if(Array.isArray(data) && data.length) {
       const lis = data.map(v=>{
-        return <li key={v.name}>
+        return <li key={v.id}>
           <a className="thumb" href={`/p?json=${jsonToUrl(v.code)}`} target="_blank">
-            <img src={defaultWallListImg}/>
+            <img src={v.thumb ? `//assets.brickui.com/${v.thumb}` : defaultWallListImg}/>
           </a>
           <Link className="update btn btn-s btn-success" to={`/works/${v.id}`} target="_blank">修改</Link>
           <div>

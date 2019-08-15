@@ -58,7 +58,7 @@ export default class Wall extends React.Component {
   getData = (category,layout) => {
     const {httpAgent} = this.props
 
-    let url = `/wall/getList/?page=1`
+    let url = `/works/getList/?page=1`
     category && (url+=`&category=${category}`)
     layout && (url+=`&layout=${layout}`)
 

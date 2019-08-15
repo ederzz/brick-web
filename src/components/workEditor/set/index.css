@@ -1,12 +1,8 @@
-.create-modal {
-    margin: 100px auto;
-    width: 480px;
-    padding: 40px 60px;
-    border-radius: 3px;
-    background-color: #fff;
+.set-works {
+    padding: 24px;
 }
 
-.create-modal .textarea {
+.set-works .textarea {
     display: block;
     width: 100%;
     margin: 0;

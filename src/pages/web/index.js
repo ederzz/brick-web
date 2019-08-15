@@ -58,7 +58,7 @@ export default class Wall extends React.Component {
   getData = (category,layout) => {
     const {httpAgent} = this.props
 
-    let url = `/wall/getList/?page=1`
+    let url = `/works/getList/?page=1`
     category && (url+=`&category=${category}`)
     layout && (url+=`&layout=${layout}`)
 
@@ -92,7 +92,7 @@ export default class Wall extends React.Component {
       const lis = data.map((v,i)=>{
         return <li key={i}>
           <a href={`/p?json=${v.code}`} target="_blank">
-            <img src={defaultWallListImg}/>
+            <img src={v.thumb ? `//assets.brickui.com/${v.thumb}` : defaultWallListImg}/>
           </a>
           <div>
             <strong>{v.name}</strong>

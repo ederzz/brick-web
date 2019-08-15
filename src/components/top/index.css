@@ -5,9 +5,13 @@
 
 .top-layout .logo {
     float: left;
-    margin-left: 20px;
     height: 50px;
     line-height: 50px;
+}
+
+.top-layout .logo img {
+    height: 40px;
+    margin-top: 5px;
 }
 
 .top-layout .search {
@@ -37,18 +41,17 @@
 
 .top-layout .nav {
     float: right;
-    margin-right: 10px;
     font-size: 12px;
 }
 
-.top-layout .nav a {
+.top-layout .nav > a {
     float: left;
     padding: 13px 10px;
     line-height: 40px;
     cursor: pointer;
 }
 
-.top-layout .nav a span {
+.top-layout .nav > a span {
     display: block;
     height: 24px;
     border-top: 2px solid transparent;
@@ -56,10 +59,10 @@
     line-height: 20px;
 }
 
-.top-layout .nav a.active span {
+.top-layout .nav > a.active span {
     border-bottom: 2px solid #5bc0de;
 }
 
-.top-layout a {
+.top-layout .nav > a {
     color: #fff;
 }

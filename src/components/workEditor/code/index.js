@@ -1,7 +1,10 @@
 import React from 'react'
 import codemirror from 'codemirror'
+import jsonlint from '../../../utils/jsonlint'
 
 import 'codemirror/mode/javascript/javascript'
+
+import './index.css'
 
 export default class Code extends React.Component {
   constructor(props) {
@@ -32,19 +35,23 @@ export default class Code extends React.Component {
   }
 
   onChange = (doc, change) => {
-    //console.log('on change',doc.getValue())
+    const { setJsonErr, setCode } = this.props
     let code = doc.getValue()
-    //code = code.replace(/\/\/.*/g, "")
-    //code = code.replace(/\s/g, "")
-    //code = code.replace(/[a-zA-Z0-9]+(?=:)/g,'"$&"')
-    //code = code.replace(/'/g,'"')
-    this.props.setCode(code)
+
+    try {
+      code = jsonlint.parse(code)
+      setCode(code)
+      setJsonErr(null)
+    }
+    catch (err) {
+      setJsonErr(err.toString())
+    }
   }
 
 
   render() {
     return (
-      <div className="home-code">
+      <div className="work-code">
         <textarea
           ref={this.textareaRef}
           autoComplete="off"

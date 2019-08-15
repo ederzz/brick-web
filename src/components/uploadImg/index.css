@@ -1,0 +1,47 @@
+.u-upload-img {
+    border: 1px solid #ccc;
+}
+
+.u-upload-img .img {
+    float: left;
+    max-width: 300px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.u-upload-img .img img {
+    height: 100%;
+    cursor: pointer;
+}
+
+.u-upload-img > input {
+    display: none;
+}
+
+.u-upload-img .file-name {
+    display: block;
+    margin: 33px 0 0 24px;
+    line-height: 34px;
+    font-size: 14px;
+}
+
+.u-upload-img .handle {
+    float: right;
+    margin: 33px 24px 0 0;
+    line-height: 34px;
+}
+
+.u-upload-img .handle .btn {
+    width: 80px;
+    margin: 0 0 0 24px;
+    vertical-align: middle;
+}
+
+.u-upload-img .handle .tips {
+    display: inline-block;
+    width: auto;
+    height: 34px;
+    vertical-align: middle;
+    line-height: 34px;
+    font-size: 12px;
+}
