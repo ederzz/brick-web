@@ -1,4 +1,5 @@
 .create-modal {
+    position: relative;
     margin: 100px auto;
     width: 700px;
     padding: 24px 24px 24px 0;
@@ -32,4 +33,16 @@
     display: block;
     width: 80px;
     margin: 0 auto;
+}
+
+.create-modal .close {
+    z-index: 9;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    background: url("./close.png") no-repeat center;
+    background-size: 34px 34px;
+    cursor: pointer;
 }

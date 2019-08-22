@@ -97,7 +97,7 @@ export default class Wall extends React.Component {
           <div>
             <strong>{v.name}</strong>
             <p className="tags">标签：{this.getTags(v.tags)}</p>
-            <p>作者：{v.user}</p>
+            <p>作者：{v.user}<a className="src" href={`/web/${v.id}`} target="_blank">源码</a></p>
           </div>
         </li>
       })

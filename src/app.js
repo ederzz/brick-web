@@ -13,7 +13,9 @@ import DevHome from './pages/devHome'
 import Dev from './pages/dev'
 import Preview from './pages/preview'
 import Brick from './pages/brick'
+import BrickView from './pages/brick/view'
 import Web from './pages/web'
+import WebCode from './pages/web/code'
 import Rule from './pages/rule'
 import Works from './pages/works'
 import WorksEditor from './pages/works/editor'
@@ -115,8 +117,10 @@ export default class App extends React.Component {
           <Route exact path="/dev" render={(props) => this.preRender(props, DevHome, {mastLogin: true})}/>
           <Route path="/dev/:name" render={(props) => this.preRender(props, Dev, {noTop: true, mastLogin: true})}/>
           <Route path="/p" render={(props) => this.preRender(props, Preview, {noTop: true})}/>
-          <Route path="/brick" render={(props) => this.preRender(props, Brick)}/>
-          <Route path="/web" render={(props) => this.preRender(props, Web)}/>
+          <Route exact path="/brick" render={(props) => this.preRender(props, Brick)}/>
+          <Route path="/brick/:name" render={(props) => this.preRender(props, BrickView, {noTop: true})}/>
+          <Route exact path="/web" render={(props) => this.preRender(props, Web)}/>
+          <Route path="/web/:id" render={(props) => this.preRender(props, WebCode)}/>
           <Route path="/rule" render={(props) => this.preRender(props, Rule)}/>
           <Route exact path="/works" render={(props) => this.preRender(props, Works, {mastLogin: true})}/>
           <Route path="/works/:id" render={(props) => this.preRender(props, WorksEditor, {mastLogin: true})}/>

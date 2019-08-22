@@ -59,6 +59,7 @@ export default class Register extends React.Component {
 
 
   render() {
+    console.log('register render')
     const {changeUserStatus, close, noTop} = this.props
     return (<Modal
       show={true}

@@ -107,12 +107,6 @@ export default class Login extends React.Component {
       error = '请填选择布局'
     } else if (!stack || !stack.value) {
       error = '请填选择技术栈'
-    } else if (!slots) {
-      error = '请填写插槽名称'
-    } else if (!tags) {
-      error = '请填写标签'
-    } else if (!description) {
-      error = '请填写描述'
     }
 
     return error
@@ -161,10 +155,9 @@ export default class Login extends React.Component {
   render() {
     const {modalClose, editorInfo, httpAgent} = this.props
     const {category, layout, stack, name, slots, tags, description, thumb, nameErr} = this.state
-    console.log('render', this.state)
+    console.log('create project render', this.state)
     return (<Modal
       show={true}
-      onMask={modalClose}
     >
       <div className="create-modal clearfix">
         <div className={`formitem ${nameErr ? 'error' : ''}`}>
@@ -244,6 +237,7 @@ export default class Login extends React.Component {
             <button className="btn btn-primary" onClick={this.onCreate}>{editorInfo ? '修改' : '创建'}</button>
           </div>
         </div>
+        <i className="close" onClick={modalClose} />
       </div>
     </Modal>)
 

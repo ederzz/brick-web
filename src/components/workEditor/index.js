@@ -21,7 +21,7 @@ export default class Editor extends React.Component {
   }
 
   componentDidMount() {
-    const {initCode, editorInfo} = this.props
+    const {initCode, editorInfo, type='editor'} = this.props
     if (initCode) {
       this.setState({code: initCode})
     }
@@ -33,6 +33,10 @@ export default class Editor extends React.Component {
         tags: editorInfo.tags
       }
       this.setState({info})
+    }
+
+    if (type === 'view') {
+      this.setState({active: 'code'})
     }
   }
 
@@ -111,14 +115,14 @@ export default class Editor extends React.Component {
 
   render() {
     const {setCode, setEditorTool, setJsonErr} = this
-    const {httpAgent, id} = this.props
+    const {httpAgent, id, type='editor'} = this.props
     const {active, code, info, editorTool, jsonErr} = this.state
     let activeObj = undefined
     const codeStr = JSON.stringify(code,null,4)
     //const jsonUrl = jsonToUrl(codeStr)
     const jsonUrl = JSON.stringify(code)
 
-    const tabs = [
+    let tabs = [
       {
         type: 'create',
         title: '创作',
@@ -141,6 +145,22 @@ export default class Editor extends React.Component {
       },
     ]
 
+    if(type === 'view') {
+      tabs = [
+        {
+          type: 'code',
+          title: '源码',
+          body: <Code code={codeStr} setCode={setCode} setJsonErr={setJsonErr}/>
+        },
+        {
+          type: 'create',
+          title: '创作',
+          body: <Create code={code} setCode={setCode} httpAgent={httpAgent} setEditorTool={setEditorTool}/>
+        }
+      ]
+    }
+
+
     for (const i in tabs) {
       if (tabs[i].type === active) {
         activeObj = tabs[i]
@@ -160,9 +180,9 @@ export default class Editor extends React.Component {
               }}
             >{v.title}</span>
           })}
-          <div className="tool">
+          {type === 'view' ? null : <div className="tool">
             {editorTool}
-          </div>
+          </div>}
         </div>
         <div className="body">
           <Scroll>
@@ -171,7 +191,7 @@ export default class Editor extends React.Component {
         </div>
         {jsonErr ? <div className="json-err">{jsonErr}</div>: null}
       </div>
-      <div className="work-url">
+      {type === 'view' ? null : <div className="work-url">
         <input id="url" readOnly value={`${ENV.HOME}/p?json=${jsonUrl}`}/>
         <a
           href={`${ENV.HOME}/p?json=${jsonUrl}`}
@@ -183,7 +203,7 @@ export default class Editor extends React.Component {
           onMouseLeave={() => toolTip({leave: true})}
         >查看</a>
         <button className="url-save" onClick={this.onSave}>{id === '0' ? '保存' : '修改'}</button>
-      </div>
+      </div>}
     </div>)
 
   }

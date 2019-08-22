@@ -103,6 +103,13 @@ export default class Item extends React.Component {
 
   }
 
+  onKeyUp = (e) => {
+    console.log(e)
+    if(e.keyCode === 13) {
+      e.target.blur()
+    }
+  }
+
 
   render() {
 
@@ -118,7 +125,7 @@ export default class Item extends React.Component {
       value = text.slice(0,-2)
     }
 
-    const placeholder = moduleActive === 3 ? '请输入文字' : '请输入模块名称'
+    const placeholder = moduleActive === 3 ? '请输入文字' : '请输入模块名称并回车'
 
 
     return(<li>
@@ -130,7 +137,7 @@ export default class Item extends React.Component {
         {childArr ? <span key="add" className="add" onClick={this.addArray}>+</span> : null}
         {value || value === '' ?
           <div key="inputWrap" className="input">
-            <input value={value} onChange={this.onChange} placeholder={placeholder} onBlur={this.onBlur}/>
+            <input value={value} onChange={this.onChange} placeholder={placeholder} onBlur={this.onBlur} onKeyUp={this.onKeyUp}/>
           </div>
           : null
         }

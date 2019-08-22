@@ -33,6 +33,7 @@ export default class Login extends React.Component {
 
 
   render() {
+    console.log('login render')
     const {changeUserStatus, close, noTop} = this.props
     return (<Modal
       show={true}

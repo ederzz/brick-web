@@ -84,6 +84,7 @@ export default class Modal extends Component {
     }
     // eslint-disable-next-line
     this.props.parent.removeChild(this.modal)
+    document.body.classList.remove(`brick-modal-open-${this.modal.id}`)
   }
 
   // 模态框外面的点击事件
@@ -185,6 +186,7 @@ export default class Modal extends Component {
   }
 
   closeIng = (newProps) => {
+    console.log('closeIng',this.modal.id)
     this.setState({
       isShow: false,
     }, () => {

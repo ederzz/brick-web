@@ -39,7 +39,7 @@
     list-style: none;
 }
 
-.brick-list li a {
+.brick-list li > a {
     position: relative;
     display: block;
     height: 123px;
@@ -73,4 +73,9 @@
     color: #666;
     word-wrap: normal;
     white-space: nowrap;
+}
+
+.brick-list li p .src {
+    float: right;
+    color: #39c;
 }

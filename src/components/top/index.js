@@ -14,7 +14,7 @@ export default class Top extends React.Component {
         <img src={`${ENV.PUBLIC_URL}/bui.png`} alt="BrickUI" />
       </Link>
       <div className="nav">
-        <NavLink to="/brick"><span>积木</span></NavLink>
+        <NavLink to="/brick"><span>积木/模块</span></NavLink>
         <NavLink to="/web"><span>作品</span></NavLink>
         <NavLink to="/rule"><span>规范</span></NavLink>
         <NavLink to="/dev"><span>开发者</span></NavLink>

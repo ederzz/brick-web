@@ -76,7 +76,7 @@ export default class DevHome extends React.Component {
       <div className="wrap">
         {this.getList()}
         <div className="my-pro-create-btn">
-          <div className="btn btn-primary" onClick={this.onCreate}>创建</div>
+          <div className="btn btn-primary" onClick={this.onCreate}>创建积木/模块</div>
           <Link to="/rule" target="_blank" className="btn btn-link">请查看开发规范</Link>
           <Link to="/assets" target="_blank" className="btn btn-link">素材管理</Link>
         </div>

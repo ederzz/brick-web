@@ -101,7 +101,7 @@ export default class Wall extends React.Component {
       <div className="p-works">
         {this.getList()}
         <div className="handle">
-          <Link className="btn btn-primary" to="/works/0" target="_blank">创建</Link>
+          <Link className="btn btn-primary" to="/works/0" target="_blank">创建作品</Link>
         </div>
       </div>
     )

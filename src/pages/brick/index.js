@@ -79,6 +79,20 @@ export default class Wall extends React.Component {
     })
   }
 
+  getTags = (tags) => {
+    console.log('tags',tags)
+    if(Array.isArray(tags) && tags.length) {
+      const lis = tags.map((v,i)=>{
+        console.log('v',v)
+        return <span key={i}>{v}</span>
+      })
+
+      return lis
+    }else{
+      return null
+    }
+  }
+
   getList = () => {
     const {data} = this.state
     if(Array.isArray(data) && data.length) {
@@ -90,6 +104,8 @@ export default class Wall extends React.Component {
           <div>
             <strong>{v.name}</strong>
             <p>{v.description}</p>
+            <p className="tags">标签：{this.getTags(v.tags)}</p>
+            <p>作者：{v.user}<a className="src" href={`/brick/${v.name}`} target="_blank">源码</a></p>
           </div>
         </li>
       })
