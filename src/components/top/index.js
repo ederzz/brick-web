@@ -17,7 +17,8 @@ export default class Top extends React.Component {
         <NavLink to="/brick"><span>积木/模块</span></NavLink>
         <NavLink to="/web"><span>作品</span></NavLink>
         <NavLink to="/rule"><span>规范</span></NavLink>
-        <NavLink to="/dev"><span>开发者</span></NavLink>
+        <NavLink to="/help"><span>帮助</span></NavLink>
+        <NavLink to="/dev"><span>积木开发</span></NavLink>
         {userInfo && userInfo.account ?
           <User userInfo={userInfo} loginOut={loginOut}/>
           : [<a onClick={()=>{changeUserStatus('login')}}><span>登录</span></a>,<a onClick={()=>{changeUserStatus('register')}}><span>注册</span></a>]

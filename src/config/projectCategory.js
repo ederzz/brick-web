@@ -40,8 +40,8 @@ export default [
     value:'form',
   },
   {
-    name: '文章',
-    value:'article',
+    name: '内容',
+    value:'content',
   },
   {
     name: '评论',

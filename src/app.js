@@ -17,6 +17,7 @@ import BrickView from './pages/brick/view'
 import Web from './pages/web'
 import WebCode from './pages/web/code'
 import Rule from './pages/rule'
+import Help from './pages/help'
 import Works from './pages/works'
 import WorksEditor from './pages/works/editor'
 import Assets from './pages/assets'
@@ -41,7 +42,12 @@ export default class App extends React.Component {
       userInfo: {},
     }
     this.agent = httpAgent(ENV.APIROOT)
-    setStorage(this.getUserInfo) // 新打开的窗口设置token 并且回掉 获取用户信息(因为是异步的所以did mount 时token不存在)
+    setStorage(this.getUserInfo,()=>{
+      this.setState({
+        userStatus: 'out', // out login register
+        userInfo: {},
+      })
+    }) // 新打开的窗口设置token 并且回掉 获取用户信息(因为是异步的所以did mount 时token不存在)
   }
 
   componentDidMount () {
@@ -52,6 +58,7 @@ export default class App extends React.Component {
 
   // 修改用户当前状态
   changeUserStatus = (userStatus) => {
+    console.log('changeUserStatus',userStatus)
     this.setState({userStatus})
   }
 
@@ -61,6 +68,7 @@ export default class App extends React.Component {
       const {code,data,message='获取用户信息失败'} = res
       if(code === 0 && data && Object.keys(data).length) {
         this.setState({userInfo:data})
+        this.changeUserStatus('out')
       }else if(code === 0) {
         tosts.error('没有获取到用户信息')
       }else{
@@ -122,6 +130,7 @@ export default class App extends React.Component {
           <Route exact path="/web" render={(props) => this.preRender(props, Web)}/>
           <Route path="/web/:id" render={(props) => this.preRender(props, WebCode)}/>
           <Route path="/rule" render={(props) => this.preRender(props, Rule)}/>
+          <Route path="/help" render={(props) => this.preRender(props, Help)}/>
           <Route exact path="/works" render={(props) => this.preRender(props, Works, {mastLogin: true})}/>
           <Route path="/works/:id" render={(props) => this.preRender(props, WorksEditor, {mastLogin: true})}/>
           <Route exact path="/assets" render={(props) => this.preRender(props, Assets, {mastLogin: true})}/>
