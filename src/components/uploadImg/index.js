@@ -110,7 +110,7 @@ export default class Upload extends React.Component {
       </span>
       <div className="handle">
         <span className="tips">建议图片比例16:9(320*180)</span>
-        {!value ? <span className="btn btn-primary" onClick={this.saveFile}>上传</span> : null}
+        {file ? <span className="btn btn-primary" onClick={this.saveFile}>上传</span> : null}
       </div>
     </div>)
 

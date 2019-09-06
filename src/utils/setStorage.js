@@ -1,7 +1,8 @@
 const setStorage = (cb,loginOut) => {
   console.log('setStorage')
   //入口，用于触发核心事件
-  if (!sessionStorage.length) {
+  // !sessionStorage.length 百度统计占用
+  if (!sessionStorage.token) {
     console.log('入口')
     localStorage.setItem('getSessionNew', Date.now());
   };

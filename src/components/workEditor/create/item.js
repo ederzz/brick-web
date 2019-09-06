@@ -6,7 +6,8 @@ export default class Item extends React.Component {
   onChange = (e) => {
     const {parent, self, updateCode, ui, text, module, slot, childObj} = this.props
 
-    const value = e.target.value
+    let value = e.target.value
+    value = value.replace(/^\s*|\s*$/g, '')
 
     console.log('onChange')
     this.blurFlag = true
